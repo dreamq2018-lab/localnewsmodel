@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 동행 워크숍 — 다산어보 언론협동조합</title>
+<meta name="description" content="다산어보 언론협동조합이 진행하는 90분 AI 동행 워크숍. 마을 활동가·시민·어르신 누구나, 스마트폰 한 대로 마을 신문을 만듭니다.">
+<style>
+  @page { size: 1080px 1350px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  html, body {
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: linear-gradient(180deg, #faf6ee 0%, #f0e8d4 100%);
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  /* 상단 돌아가기 링크 */
+  .back-link {
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto 12px;
+    text-align: left;
+  }
+  .back-link a {
+    display: inline-block;
+    color: #1F3A5F;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 6px;
+    border: 1px solid #d4c8a8;
+    transition: background 0.15s;
+  }
+  .back-link a:hover { background: #fff; }
+
+  .poster {
+    width: 1080px;
+    max-width: 100%;
+    min-height: 1350px;
+    padding: 70px 70px 35px;
+    position: relative;
+    background: linear-gradient(180deg, #faf6ee 0%, #f0e8d4 100%);
+    box-shadow: 0 8px 32px rgba(31, 58, 95, 0.12);
+    border-radius: 8px;
+  }
+
+  /* 상단 메인 타이틀 */
+  .main-title { text-align: center; margin-bottom: 32px; }
+  .badge {
+    display: inline-block;
+    background: #1F3A5F;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    padding: 8px 22px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .title-line1 {
+    font-family: 'Batang', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #555;
+    letter-spacing: -1px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .title-line2 {
+    font-family: 'Batang', serif;
+    font-size: 62px;
+    font-weight: 900;
+    color: #1F3A5F;
+    letter-spacing: -2px;
+    line-height: 1.2;
+  }
+  .title-line2 .em { color: #B8952A; }
+  .divider { width: 80px; height: 3px; background: #B8952A; margin: 30px auto 0; }
+
+  /* 강조 문구 (워크숍 약속) */
+  .promise {
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding: 22px 24px;
+    background: #fff8e1;
+    border-left: 5px solid #B8952A;
+    border-radius: 4px;
+  }
+  .promise-text {
+    font-family: 'Batang', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1F3A5F;
+    line-height: 1.4;
+  }
+  .promise-sub { margin-top: 10px; font-size: 17px; color: #555; line-height: 1.55; }
+
+  /* 차별점 3박스 */
+  .features { display: flex; gap: 14px; justify-content: center; margin-bottom: 22px; }
+  .feature {
+    flex: 1; background: #fff;
+    border-radius: 12px; padding: 24px 16px 26px;
+    text-align: center;
+    border: 1px solid #e8dfc7;
+    box-shadow: 0 4px 12px rgba(31, 58, 95, 0.07);
+    min-height: 215px;
+  }
+  .feature-num {
+    display: inline-block; width: 32px; height: 32px;
+    line-height: 32px; background: #1F3A5F; color: #fff;
+    border-radius: 50%; font-weight: 900; font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .feature-title { font-size: 18px; font-weight: 900; color: #1F3A5F; margin-bottom: 10px; line-height: 1.35; }
+  .feature-desc { font-size: 13px; color: #666; line-height: 1.6; }
+
+  /* 운영 정보 */
+  .specs {
+    background: #1F3A5F;
+    border-radius: 12px; padding: 24px 28px;
+    display: flex; justify-content: space-around; align-items: center;
+    margin-bottom: 30px;
+  }
+  .spec { text-align: center; color: #fff; }
+  .spec-label { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 2px; margin-bottom: 8px; }
+  .spec-value { font-size: 28px; font-weight: 900; color: #B8952A; line-height: 1; }
+  .spec-unit { font-size: 14px; color: rgba(255,255,255,0.85); margin-top: 5px; }
+  .spec-divider { width: 1px; height: 50px; background: rgba(255,255,255,0.2); }
+
+  /* 케이스 카드 */
+  .showcase { margin-bottom: 26px; }
+  .showcase-title {
+    text-align: center; font-size: 13px;
+    color: #B8952A; font-weight: 700;
+    letter-spacing: 3px; margin-bottom: 14px;
+  }
+  .showcase-title::before, .showcase-title::after {
+    content: "◆"; color: #B8952A;
+    margin: 0 10px; opacity: 0.5;
+  }
+  .showcase-cards { display: flex; gap: 16px; }
+  .showcase-card {
+    flex: 1; background: #fff;
+    border-radius: 12px; padding: 16px 18px;
+    display: flex; align-items: center; gap: 14px;
+    border: 1px solid #e8dfc7;
+    box-shadow: 0 4px 12px rgba(31, 58, 95, 0.07);
+  }
+  .showcase-qr { width: 80px; height: 80px; flex-shrink: 0; border-radius: 6px; overflow: hidden; }
+  .showcase-qr img { width: 100%; height: 100%; display: block; }
+  .showcase-info { flex: 1; min-width: 0; }
+  .showcase-name { font-family: 'Batang', serif; font-size: 16px; font-weight: 900; color: #1F3A5F; margin-bottom: 4px; line-height: 1.2; }
+  .showcase-name .hanja { font-size: 12px; color: #B8952A; margin-left: 6px; font-weight: 700; }
+  .showcase-desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 5px; }
+  .showcase-url { font-size: 11px; color: #B8952A; font-weight: 700; letter-spacing: 0.5px; }
+
+  /* 연락처 */
+  .contact { text-align: center; border-top: 1px solid #d4c8a8; padding-top: 16px; }
+  .contact-org { font-size: 19px; font-weight: 900; color: #1F3A5F; margin-bottom: 5px; }
+  .contact-person { font-size: 15px; color: #555; margin-bottom: 8px; }
+  .contact-info { font-size: 15px; color: #1F3A5F; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.3px; }
+  .contact-info .sep { color: #B8952A; margin: 0 8px; font-weight: 400; }
+  .contact-web { font-size: 15px; color: #B8952A; font-weight: 700; letter-spacing: 1px; }
+  .credit { margin-top: 12px; text-align: center; font-size: 11px; color: #a0a0a0; font-style: italic; letter-spacing: 1px; }
+
+  /* 모바일 대응 */
+  @media (max-width: 720px) {
+    .poster { padding: 40px 24px 24px; }
+    .title-line1 { font-size: 26px; }
+    .title-line2 { font-size: 40px; }
+    .promise-text { font-size: 20px; }
+    .features { flex-direction: column; }
+    .specs { flex-direction: column; gap: 18px; padding: 22px; }
+    .spec-divider { width: 50px; height: 1px; }
+    .showcase-cards { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="back-link">
+  <a href="./index.html">← ALT프로덕션 솔루션 안내로</a>
+</nav>
+
+<div class="poster">
+
+  <!-- 상단 메인 타이틀 -->
+  <div class="main-title">
+    <div class="badge">⚡ AI 동행 워크숍</div>
+    <div class="title-line1">AI의 협업으로 누구나 만드는</div>
+    <div class="title-line2">세상에서 가장 쉬운<br><span class="em">인터넷 신문 만들기</span></div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- 워크숍 약속 -->
+  <div class="promise">
+    <div class="promise-text">
+      "강의가 끝나면, 우리 마을 인터넷 신문이 생깁니다."
+    </div>
+    <div class="promise-sub">
+      마을 활동가·시민·어르신 누구나<br>
+      직접 손기 손으로 발행하는 90분 신문 워크숍
+    </div>
+  </div>
+
+  <!-- 차별점 -->
+  <div class="features">
+    <div class="feature">
+      <div class="feature-num">1</div>
+      <div class="feature-title">살아있는 URL이<br>생깁니다</div>
+      <div class="feature-desc">교육이 끝난 후 1개월 동안<br>수강생이 직접 운영 가능한<br>마을 신문 사이트</div>
+    </div>
+    <div class="feature">
+      <div class="feature-num">2</div>
+      <div class="feature-title">코딩·가입<br>일체 없음</div>
+      <div class="feature-desc">스마트폰 한대면 됨<br>강사가 모든 준비를<br>대신 합니다</div>
+    </div>
+    <div class="feature">
+      <div class="feature-num">3</div>
+      <div class="feature-title">살아있는<br>강사 사례</div>
+      <div class="feature-desc">강사가 30일 만에<br>직접 창간한 매체로<br>방법을 보여줍니다</div>
+    </div>
+  </div>
+
+  <!-- 운영 정보 -->
+  <div class="specs">
+    <div class="spec">
+      <div class="spec-label">SESSION</div>
+      <div class="spec-value">90<span class="spec-unit" style="display:inline; margin-left:4px;">분</span></div>
+    </div>
+    <div class="spec-divider"></div>
+    <div class="spec">
+      <div class="spec-label">PEOPLE</div>
+      <div class="spec-value">20<span class="spec-unit" style="display:inline; margin-left:4px;">명</span></div>
+    </div>
+    <div class="spec-divider"></div>
+    <div class="spec">
+      <div class="spec-label">TOOL</div>
+      <div class="spec-value" style="font-size:22px;">스마트폰</div>
+      <div class="spec-unit">1대면 충분</div>
+    </div>
+  </div>
+
+  <!-- 쇼케이스 -->
+  <div class="showcase">
+    <div class="showcase-title">강사가 만든 실제 사이트 — QR로 바로 확인하세요</div>
+    <div class="showcase-cards">
+      <div class="showcase-card">
+        <div class="showcase-qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAAEiCAIAAADS3EjhAAAFDklEQVR4nO3du21sNxRAUctQIe7Dzbi018zrw51cp4oYmNo45NVaqTAazmeDwRyQH8/z/AGU/pxeALyfzCAnM8jJDHIyg5zMICczyMkMcjKDnMwgJzPIyQxyMoOczCAnM8jJDHIyg5zMICczyH3uPPivv//5pmWc4t/fvxZ/Xb/enceudf95x5mr6qxf75rdDHIyg5zMICczyMkMcjKDnMwgJzPIyQxyW1Mgazu/mnfeN42xduancOaquk/QbgY5mUFOZpCTGeRkBjmZQU5mkJMZ5GQGuXAKZK37xf3MCYO1nTV355dMed93w24GOZlBTmaQkxnkZAY5mUFOZpCTGeRkBrmxKZAbdRMVU3fNrN04QXImuxnkZAY5mUFOZpCTGeRkBjmZQU5mkJMZ5EyBfJudmYmps0DOvMXmfexmkJMZ5GQGOZlBTmaQkxnkZAY5mUFOZpAbmwJ530kS3c0sU/MlUzMi7/tu2M0gJzPIyQxyMoOczCAnM8jJDHIyg5zMIBdOgThn4gRn3ury074bdjPIyQxyMoOczCAnM8jJDHIyg5zMICczyG1NgbzvzIYpU7Ma3TSG78ZXdjPIyQxyMoOczCAnM8jJDHIyg5zMICczyH08z/O/H3zm7MLO7So7ftrcw5nneXQ34Oz8Z7sZ5GQGOZlBTmaQkxnkZAY5mUFOZpCTGeTGboTpZjW63/Lft6rOma9oam7JbgY5mUFOZpCTGeRkBjmZQU5mkJMZ5GQGua2zQNbOPHVjahpjaipiZ9rmxpto1qbOa7GbQU5mkJMZ5GQGOZlBTmaQkxnkZAY5mUEunAJZe98cQHf2ydTswtRpLmdOzOywm0FOZpCTGeRkBjmZQU5mkJMZ5GQGOZlB7tAbYTrdqqZe0ZQb5zx2/vPOmu1mkJMZ5GQGOZlBTmaQkxnkZAY5mUFOZpDbmgI58w6UtRunT6bO5Nhx4906zgKBi8kMcjKDnMwgJzPIyQxyMoOczCAnM8j9uBth1qZuObnx3dhx42zKDrsZ5GQGOZlBTmaQkxnkZAY5mUFOZpCTGeTGpkDWzjw5Y2qS48ZTVW58XmeBwMVkBjmZQU5mkJMZ5GQGOZlBTmaQkxnktqZA3jf30M2I7HjfXMsUZ4HAa8kMcjKDnMwgJzPIyQxyMoOczCAnM8h97jx46jf1tTNXtTONceYrOnPq5Ux2M8jJDHIyg5zMICczyMkMcjKDnMwgJzPIbU2BOCviq6l348xP4X2THDvsZpCTGeRkBjmZQU5mkJMZ5GQGOZlBTmaQ25oCWTvzl/7uvpjueW+cqJg6KWRHt2a7GeRkBjmZQU5mkJMZ5GQGOZlBTmaQkxnkwimQtRt/y++mMc48z2PtxjVPTczYzSAnM8jJDHIyg5zMICczyMkMcjKDnMwgNzYFcqP1DEF3ysjUOSJTcy3d806tym4GOZlBTmaQkxnkZAY5mUFOZpCTGeRkBjlTIEfYmdW48YSSblVT79Wa3QxyMoOczCAnM8jJDHIyg5zMICczyMkMcmNTIFN3c5xp592YOqFkrTuTY+d5p9jNICczyMkMcjKDnMwgJzPIyQxyMoOczCAXToGc+Xv8jhtfUTcjsvO8nanbc9bsZpCTGeRkBjmZQU5mkJMZ5GQGOZlBTmaQ+3ieZ3oN8HJ2M8jJDHIyg5zMICczyMkMcjKDnMwgJzPIyQxyMoOczCAnM8jJDHIyg5zMICczyMkMcjKD3H9K1nKf/gK9PgAAAABJRU5ErkJggg=="></div>
+        <div class="showcase-info">
+          <div class="showcase-name">다산어보<span class="hanja">茶山語報</span></div>
+          <div class="showcase-desc">강진·고흥·보성·장흥<br>4개 군의 마을 언론</div>
+          <div class="showcase-url">www.dasaneobo.kr</div>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAAEiCAIAAADS3EjhAAAFHklEQVR4nO3dwY3cOBBAUY+xgWweTsahORnnsZlor3MiYHA+ipTfuxqtUbf7g4culD6e5/kGlL5P3wC8n8wgJzPIyQxyMoOczCAnM8jJDHIyg5zMICczyMkMcjKDnMwgJzPIyQxyMoOczCAnM8j9s/Pif3/8/KLbOMV/v38t/nX9ft/32h1/23djzWkGOZlBTmaQkxnkZAY5mUFOZpCTGeRkBrmtKZC1bsJgx9R0wtSnsfN3uwmSv+274TSDnMwgJzPIyQxyMoOczCAnM8jJDHIyg1w4BbLW/eI+NWGw847W9zy17ePGT3Jt6h05zSAnM8jJDHIyg5zMICczyMkMcjKDnMwgNzYFcqOdaYy1G5/bcuY+jzM5zSAnM8jJDHIyg5zMICczyMkMcjKDnMwgZwrkD+zMapw5I9LdM585zSAnM8jJDHIyg5zMICczyMkMcjKDnMwgNzYFcuMmie6ed6489SSazo3fjTWnGeRkBjmZQU5mkJMZ5GQGOZlBTmaQkxnkwimQ922SOPO5LTfuIHnfd2PNaQY5mUFOZpCTGeRkBjmZQU5mkJMZ5GQGuY/neabvgS1Tsxrv29jRcZpBTmaQkxnkZAY5mUFOZpCTGeRkBjmZQW5rF4hdEV9lZ59H99q1M6/cfXN23pHTDHIyg5zMICczyMkMcjKDnMwgJzPIyQxyVz4RZurZKzumZhfWznzWTPfate575TSDnMwgJzPIyQxyMoOczCAnM8jJDHIyg1w4BXLjrMZaNxVx5tNVpmZE3rfdxGkGOZlBTmaQkxnkZAY5mUFOZpCTGeRkBrmxXSBTv/Svrf/u1AaL7v1OXbmb4znzWUJOM8jJDHIyg5zMICczyMkMcjKDnMwgJzPIfTzPM/KHp3ZFnOnGmZgz73mHXSBwMZlBTmaQkxnkZAY5mUFOZpCTGeRkBrmtXSA3TnLc+Jyabt6i225y5pNZpmZTnGaQkxnkZAY5mUFOZpCTGeRkBjmZQU5mkNvaBTL1lJOpbR9n7iDp7urGK3fsAoGjyQxyMoOczCAnM8jJDHIyg5zMICczyG3tAlnrNitM7caY2rpx5vNT1s7cXzI1feI0g5zMICczyMkMcjKDnMwgJzPIyQxyMoNcuAtkatuHZ818duPOlbUbp22cZpCTGeRkBjmZQU5mkJMZ5GQGOZlBTmaQ29oFMrXtY+rKO5tCOlObQs6cejmT0wxyMoOczCAnM8jJDHIyg5zMICczyMkMcltTIO/7tX5nsmFqB0m3kWXH1F11Uz47V3aaQU5mkJMZ5GQGOZlBTmaQkxnkZAY5mUFuawpkbWr+YG1qGuNMNz4fZ8fU/5HTDHIyg5zMICczyMkMcjKDnMwgJzPIyQxy4RTI2vvmD3Z2gZw5M7F249TL1OfsNIOczCAnM8jJDHIyg5zMICczyMkMcjKD3NgUCJ/tzIicOU9z5tTLzmfliTBwNJlBTmaQkxnkZAY5mUFOZpCTGeRkBjlTIH/gxo0d3QRJN+dx45aRNacZ5GQGOZlBTmaQkxnkZAY5mUFOZpCTGeTGpkBunKhYm5qK2Lny1Gu7nRxnTpA4zSAnM8jJDHIyg5zMICczyMkMcjKDnMwgF06BnPl7/I4zN2d0ulmNM2dium+s0wxyMoOczCAnM8jJDHIyg5zMICczyMkMch/P80zfA7yc0wxyMoOczCAnM8jJDHIyg5zMICczyMkMcjKDnMwgJzPIyQxyMoOczCAnM8jJDHIyg5zMIPc/01aGNXOxpycAAAAASUVORK5CYII="></div>
+        <div class="showcase-info">
+          <div class="showcase-name">커먼웨이브<span class="hanja">commonwave</span></div>
+          <div class="showcase-desc">시민이 만드는<br>지역 미디어 플랫폼</div>
+          <div class="showcase-url">www.commonwave.kr</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 연락처 -->
+  <div class="contact">
+    <div class="contact-org">다산어보 언론협동조합</div>
+    <div class="contact-person">강의 문의 · 편집국장 이득규</div>
+    <div class="contact-info">📞 010-2493-6998<span class="sep">·</span>✉ editor@dasaneobo.kr</div>
+    <div class="contact-web">www.dasaneobo.kr</div>
+  </div>
+
+  <div class="credit">이 포스터는 Claude의 도움을 받아 만들었습니다</div>
+
+</div>
+</body>
+</html>
